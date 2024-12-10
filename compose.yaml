@@ -1,0 +1,21 @@
+services:
+  gaussian-splatting:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      - NVIDIA_VISIBLE_DEVICES=all
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
+    volumes:
+      - ./dataset:/root/gaussian_splatting/dataset
+      - ./output:/root/gaussian_splatting/output
+    working_dir: /root/gaussian_splatting
+    stdin_open: true
+    tty: true
+    command: bash
