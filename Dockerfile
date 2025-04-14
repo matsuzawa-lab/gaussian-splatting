@@ -27,7 +27,7 @@ RUN conda env create -f environment.yml
 RUN conda init bash
 
 SHELL ["conda", "run", "-n", "gaussian_splatting", "/bin/bash", "-c"]
-RUN conda install colmap
+RUN conda install conda-forge::colmap
 RUN conda remove ffmpeg -y
 
 CMD ["/bin/bash"]
